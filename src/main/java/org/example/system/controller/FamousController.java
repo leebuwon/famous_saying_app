@@ -1,5 +1,7 @@
 package org.example.system.controller;
 
+import org.example.system.Rq;
+import org.example.system.container.Container;
 import org.example.system.entity.Famous_Say;
 
 import java.util.List;
@@ -24,9 +26,9 @@ public class FamousController {
 
     public void write() {
         System.out.printf("명언 : ");
-        String famousSaying = sc.nextLine();
+        String famousSaying = Container.getScanner().nextLine();
         System.out.printf("작가 : ");
-        String author = sc.nextLine();
+        String author = Container.getScanner().nextLine();
         cnt++;
         Famous_Say famous_say = new Famous_Say(cnt, author, famousSaying);
         famous_says.add(famous_say);
@@ -41,12 +43,16 @@ public class FamousController {
         }
     }
 
-    public void remove(String cmd) {
-        int id = parseInt(cmd.replaceAll("[^0-100]", ""));
-        famous_says.remove(famous_says.get(id - 1));
-        if (famous_says == null || famous_says.isEmpty()){
-            System.out.println(id + "명엉은 이미 존재하지 않습니다.");
+    public void remove(Rq rq) {
+        int id = -1;
+
+        try {
+            id = Integer.parseInt(rq.getParam("id"));
+        } catch (NumberFormatException e) {
+            System.out.println("id(정수)를 입력해주세요.");
+            return;
         }
-        System.out.println(id + "번 명언이 삭제되었습니다.");
+
+        System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
     }
 }
