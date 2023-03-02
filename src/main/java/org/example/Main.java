@@ -3,9 +3,10 @@ package org.example;
 import org.example.system.entity.Famous_Say;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+
+import static java.lang.Integer.parseInt;
 
 public class Main {
     public static void main(String[] args) {
@@ -37,6 +38,13 @@ public class Main {
                 for (int i = famous_says.size() - 1; i >= 0; i--) {
                     System.out.println(famous_says.get(i).toString());
                 }
+            } else if (cmd.contains("삭제?id=")) {
+                int id = parseInt(cmd.replaceAll("[^0-100]", ""));
+                famous_says.remove(famous_says.get(id - 1));
+                if (famous_says == null || famous_says.isEmpty()){
+                    System.out.println(id + "명엉은 이미 존재하지 않습니다.");
+                }
+                System.out.println(id + "번 명언이 삭제되었습니다.");
             }
         }
     }
