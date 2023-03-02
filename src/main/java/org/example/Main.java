@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.system.controller.FamousController;
 import org.example.system.entity.Famous_Say;
 
 import java.util.ArrayList;
@@ -14,37 +15,26 @@ public class Main {
         List<Famous_Say> famous_says = new ArrayList<>();
 
         System.out.println("== 명언 앱 ==");
-        int cnt = 0;
+
+        FamousController famousController = new FamousController(sc, famous_says);
+
 
         while (true) {
             System.out.printf("명령) ");
             String cmd = sc.nextLine().trim();
 
             if (cmd.equals("종료")) {
-                System.out.println("종료 되었습니다.");
+                famousController.exit();
+
                 break;
             } else if (cmd.equals("등록")) {
-                System.out.printf("명언 : ");
-                String famousSaying = sc.nextLine();
-                System.out.printf("작가 : ");
-                String author = sc.nextLine();
-                cnt++;
-                Famous_Say famous_say = new Famous_Say(cnt, author, famousSaying);
-                famous_says.add(famous_say);
-                System.out.println(cnt + "번 명언이 등록되었습니다.");
+                famousController.write();
+
             } else if (cmd.equals("목록")) {
-                System.out.println("번호 / 작가 / 명언");
-                System.out.println("----------------------");
-                for (int i = famous_says.size() - 1; i >= 0; i--) {
-                    System.out.println(famous_says.get(i).toString());
-                }
+                famousController.list();
+
             } else if (cmd.contains("삭제?id=")) {
-                int id = parseInt(cmd.replaceAll("[^0-100]", ""));
-                famous_says.remove(famous_says.get(id - 1));
-                if (famous_says == null || famous_says.isEmpty()){
-                    System.out.println(id + "명엉은 이미 존재하지 않습니다.");
-                }
-                System.out.println(id + "번 명언이 삭제되었습니다.");
+                famousController.remove(cmd);
             }
         }
     }
