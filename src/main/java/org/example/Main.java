@@ -17,8 +17,12 @@ public class Main {
                 break;
             }else if (cmd.equals("등록")){
                 System.out.printf("명언 : ");
-                String famousSaying = sc.nextLine();
-                System.out.println("작가 : 작자미상");
+                for (int i = 1; i <= 1000; i++){
+                    String famousSaying = sc.nextLine();
+                    System.out.println("작가 : 작자미상");
+                    System.out.println(i + "번 명언이 등록되었습니다.");
+                    break;
+                }
             }
         }
     }
