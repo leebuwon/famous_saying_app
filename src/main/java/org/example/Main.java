@@ -7,6 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("== 명언 앱 ==");
+        int cnt = 0;
 
         while (true){
             System.out.printf("명령) ");
@@ -17,13 +18,23 @@ public class Main {
                 break;
             }else if (cmd.equals("등록")){
                 System.out.printf("명언 : ");
-                for (int i = 1; i <= 1000; i++){
-                    String famousSaying = sc.nextLine();
-                    System.out.println("작가 : 작자미상");
-                    System.out.println(i + "번 명언이 등록되었습니다.");
-                    break;
-                }
+                String famousSaying = sc.nextLine();
+                System.out.println("작가 : 작자미상");
+                cnt++;
+                System.out.println(cnt + "번 명언이 등록되었습니다.");
             }
         }
+    }
+}
+
+class Famous_Say{
+    private int id;
+    private String author;
+    private String famous_Saying;
+
+    public Famous_Say(int id, String author, String famous_Saying) {
+        this.id = id;
+        this.author = author;
+        this.famous_Saying = famous_Saying;
     }
 }
