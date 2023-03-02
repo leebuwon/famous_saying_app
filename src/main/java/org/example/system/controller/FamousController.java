@@ -51,6 +51,20 @@ public class FamousController {
             return;
         }
 
-        System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+        // 입력된 id와 일치하는 명언객체 찾기
+        Famous_Say famous_say = findById(id);
+        // 찾은 명언 객체를 리스트에서 제거
+        famous_says.remove(famous_say);
+
+    }
+
+    private Famous_Say findById(int id) {
+        for (Famous_Say famous_say : famous_says) {
+            if ( famous_say.getId() == id){
+                System.out.println(famous_say.getId() + "번 명언이 삭제되었습니다.");
+                return famous_say;
+            }
+        }
+        return null;
     }
 }
