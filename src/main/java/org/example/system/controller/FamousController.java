@@ -73,4 +73,33 @@ public class FamousController {
         return null;
 
     }
+
+    public void modify(Rq rq) {
+        int id = rq.getIntParam("id", -1);
+
+        if (id == -1){
+            System.out.println("id에 정수를 입력해주세요");
+            return;
+        }
+
+        // 입력된 id와 일치하는 명언객체 찾기
+        Famous_Say famous_say = findById(id);
+
+        if (famous_say == null){
+            System.out.printf("%d번 명언은 존재하지 않습니다. \n", id);
+        }
+
+        System.out.printf("명언(기존) : %s \n", famous_say.getFamous_Saying());
+        System.out.printf("명언 : ");
+        String content = sc.nextLine();
+
+        System.out.printf("작가(기존) : %s \n", famous_say.getAuthor());
+        System.out.printf("작가 : ");
+        String author = sc.nextLine();
+
+        famous_say.setFamous_Saying(content);
+        famous_say.setAuthor(author);
+
+        System.out.println(famous_say.getId() + "번 명언이 수정되었습니다.");
+    }
 }

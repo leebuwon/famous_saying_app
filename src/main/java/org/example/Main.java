@@ -37,6 +37,8 @@ public class Main {
 
             } else if (cmd.startsWith("삭제")) {
                 famousController.remove(rq);
+            } else if(cmd.startsWith("수정")){
+                famousController.modify(rq);
             }
         }
     }

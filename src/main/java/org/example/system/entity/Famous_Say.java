@@ -17,6 +17,18 @@ public class Famous_Say {
         return famous_Saying;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setFamous_Saying(String famous_Saying) {
+        this.famous_Saying = famous_Saying;
+    }
+
     public Famous_Say(int id, String author, String famous_Saying) {
         this.id = id;
         this.author = author;
