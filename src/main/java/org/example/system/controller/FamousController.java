@@ -53,6 +53,11 @@ public class FamousController {
 
         // 입력된 id와 일치하는 명언객체 찾기
         Famous_Say famous_say = findById(id);
+
+        if (famous_say == null){
+            System.out.printf("%d번 명언은 존재하지 않습니다. \n", id);
+        }
+
         // 찾은 명언 객체를 리스트에서 제거
         famous_says.remove(famous_say);
 
