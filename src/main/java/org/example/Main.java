@@ -11,12 +11,12 @@ import static java.lang.Integer.parseInt;
 
 public class Main {
     public static void main(String[] args) {
-//        Scanner sc = new Scanner(System.in);
         List<Famous_Say> famous_says = new ArrayList<>();
 
         System.out.println("== 명언 앱 ==");
 
-        FamousController famousController = new FamousController(Container.getScanner(), famous_says);
+        FamousController famousController = new FamousController();
+
 
 
         while (true) {

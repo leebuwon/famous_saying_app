@@ -3,6 +3,7 @@ package org.example.system.controller;
 import org.example.system.Rq;
 import org.example.system.container.Container;
 import org.example.system.entity.Famous_Say;
+import org.example.system.service.FamousService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,14 +11,10 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class FamousController {
+    private final FamousService famousService;
 
-    private final Scanner sc;
-    private int cnt = 0;
-    private final List<Famous_Say> famous_says;
-
-    public FamousController(Scanner sc, List<Famous_Say> famous_says) {
-        this.sc = sc;
-        this.famous_says = famous_says;
+    public FamousController() {
+        famousService = new FamousService();
     }
 
     public void exit() {
@@ -26,16 +23,19 @@ public class FamousController {
 
     public void write() {
         System.out.printf("명언 : ");
-        String famousSaying = Container.getScanner().nextLine();
+        String famousSaying = Container.getScanner().nextLine().trim();
         System.out.printf("작가 : ");
-        String author = Container.getScanner().nextLine();
-        cnt++;
-        Famous_Say famous_say = new Famous_Say(cnt, author, famousSaying);
-        famous_says.add(famous_say);
-        System.out.println(cnt + "번 명언이 등록되었습니다.");
+        String author = Container.getScanner().nextLine().trim();
+
+        long id = famousService.write(famousSaying, author);
+
+        System.out.printf("%d번 명언이 등록되었습니다. \n", id);
+
     }
 
     public void list() {
+        List<Famous_Say> famous_says = famousService.findAll();
+
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
         for (int i = famous_says.size() - 1; i >= 0; i--) {
@@ -44,7 +44,7 @@ public class FamousController {
     }
 
     public void remove(Rq rq) {
-        int id = rq.getIntParam("id", -1);
+        long id = rq.getIntParam("id", -1);
 
         if (id == -1){
             System.out.println("id에 정수를 입력해주세요");
@@ -52,30 +52,18 @@ public class FamousController {
         }
 
         // 입력된 id와 일치하는 명언객체 찾기
-        Famous_Say famous_say = findById(id);
+        Famous_Say famous_say = famousService.findById(id);
 
         if (famous_say == null){
             System.out.printf("%d번 명언은 존재하지 않습니다. \n", id);
         }
 
-        // 찾은 명언 객체를 리스트에서 제거
-        famous_says.remove(famous_say);
-
-    }
-
-    private Famous_Say findById(int id) {
-        for (Famous_Say famous_say : famous_says) {
-            if ( famous_say.getId() == id){
-                System.out.println(famous_say.getId() + "번 명언이 삭제되었습니다.");
-                return famous_say;
-            }
-        }
-        return null;
+        famousService.remove(famous_say);
 
     }
 
     public void modify(Rq rq) {
-        int id = rq.getIntParam("id", -1);
+        long id = rq.getIntParam("id", -1);
 
         if (id == -1){
             System.out.println("id에 정수를 입력해주세요");
@@ -83,22 +71,22 @@ public class FamousController {
         }
 
         // 입력된 id와 일치하는 명언객체 찾기
-        Famous_Say famous_say = findById(id);
+        Famous_Say famous_say = famousService.findById(id);
 
         if (famous_say == null){
             System.out.printf("%d번 명언은 존재하지 않습니다. \n", id);
+            return;
         }
 
         System.out.printf("명언(기존) : %s \n", famous_say.getFamous_Saying());
         System.out.printf("명언 : ");
-        String content = sc.nextLine();
+        String content = Container.getScanner().nextLine();
 
         System.out.printf("작가(기존) : %s \n", famous_say.getAuthor());
         System.out.printf("작가 : ");
-        String author = sc.nextLine();
+        String author = Container.getScanner().nextLine();
 
-        famous_say.setFamous_Saying(content);
-        famous_say.setAuthor(author);
+        famousService.modify(famous_say, content, author);
 
         System.out.println(famous_say.getId() + "번 명언이 수정되었습니다.");
     }

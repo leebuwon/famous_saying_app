@@ -1,11 +1,11 @@
 package org.example.system.entity;
 
 public class Famous_Say {
-    private int id;
+    private long id;
     private String author;
     private String famous_Saying;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -29,7 +29,7 @@ public class Famous_Say {
         this.famous_Saying = famous_Saying;
     }
 
-    public Famous_Say(int id, String author, String famous_Saying) {
+    public Famous_Say(long id, String author, String famous_Saying) {
         this.id = id;
         this.author = author;
         this.famous_Saying = famous_Saying;
