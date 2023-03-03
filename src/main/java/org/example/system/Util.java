@@ -34,6 +34,7 @@ public class Util {
                     .map(String::trim)
                     .flatMap(bit -> Arrays.stream(bit.split(":")))
                     .map(String::trim)
+                    // Long.parseLong(s) 에러가 존재하지만 실행은 된다.
                     .map(s -> s.startsWith("\"") ? s.substring(1, s.length() - 1) : Long.parseLong(s))
                     .collect(Collectors.toList());
 

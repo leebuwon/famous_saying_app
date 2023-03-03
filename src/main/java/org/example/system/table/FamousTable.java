@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class FamousTable {
     public FamousTable() {
+
     }
 
     // 테이블의 데이터가 저장될 폴더 경로

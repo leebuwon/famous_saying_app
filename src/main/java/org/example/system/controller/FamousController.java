@@ -16,7 +16,6 @@ public class FamousController {
     public FamousController() {
         famousService = new FamousService();
     }
-
     public void exit() {
         System.out.println("종료 되었습니다.");
     }

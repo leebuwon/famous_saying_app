@@ -16,7 +16,6 @@ public class Famous_Say {
     public String getFamous_Saying() {
         return famous_Saying;
     }
-
     public void setId(int id) {
         this.id = id;
     }
