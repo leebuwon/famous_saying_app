@@ -36,7 +36,7 @@ public class FamousController {
     public void list() {
         List<Famous_Say> famous_says = famousService.findAll();
 
-        System.out.println("번호 / 작가 / 명언");
+        System.out.println("번호 / 명언 / 작가");
         System.out.println("----------------------");
         for (int i = famous_says.size() - 1; i >= 0; i--) {
             System.out.println(famous_says.get(i).toString());

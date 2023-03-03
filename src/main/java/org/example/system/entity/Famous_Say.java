@@ -39,4 +39,16 @@ public class Famous_Say {
     public String toString() {
         return this.id+" / "+ this.author+" / "+this.famous_Saying;
     }
+
+    public String toJson() {
+        return """
+                {
+                    "id": %d,
+                    "content": "%s",
+                    "authorName": "%s"
+                }
+                """
+                .stripIndent()
+                .formatted(id, famous_Saying, author);
+    }
 }
