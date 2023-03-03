@@ -20,7 +20,6 @@ public class UtilTest {
                 "content", "나의 죽음을 적들에게 알리지 말라",
                 "authorName", "이순신"
         );
-
         /*
         // v2
         Map<String, Object> expected = new LinkedHashMap<>() {{
@@ -29,7 +28,6 @@ public class UtilTest {
             put("authorName", "이순신");
         }};
         */
-
         assertThat(map).isEqualTo(expected);
     }
 
