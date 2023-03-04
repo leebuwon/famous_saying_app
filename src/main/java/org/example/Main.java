@@ -27,19 +27,17 @@ public class Main {
 
             if (cmd.equals("종료")) {
                 famousController.exit();
-
                 break;
             } else if (cmd.equals("등록")) {
                 famousController.write();
-
             } else if (cmd.equals("목록")) {
                 famousController.list();
-
             } else if (cmd.startsWith("삭제")) {
                 famousController.remove(rq);
             } else if(cmd.startsWith("수정")){
                 famousController.modify(rq);
-            }
+            } else if (cmd.startsWith("빌드"))
+                famousController.build();
         }
     }
 }

@@ -1,6 +1,7 @@
 package org.example.system.service;
 
 import org.example.system.Rq;
+import org.example.system.Util;
 import org.example.system.container.Container;
 import org.example.system.entity.Famous_Say;
 import org.example.system.repository.FamousRepository;
@@ -8,6 +9,7 @@ import org.example.system.repository.FamousRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class FamousService {
 
@@ -38,5 +40,18 @@ public class FamousService {
 
     public Famous_Say findById(long id) {
         return famousRepository.findById(id);
+    }
+
+    public void build() {
+        List<Famous_Say> famous_says = famousRepository.findAll();
+
+        Util.file.mkdir("prodBuild");
+
+        String json = "[" + famous_says
+                .stream()
+                .map(famous_say -> famous_say.toJson())
+                .collect(Collectors.joining(", \n")) + "]";
+
+        Util.file.saveToFile("prodBuild/data.json", json);
     }
 }

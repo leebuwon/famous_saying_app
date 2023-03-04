@@ -89,4 +89,9 @@ public class FamousController {
 
         System.out.println(famous_say.getId() + "번 명언이 수정되었습니다.");
     }
+
+    public void build() {
+        famousService.build();
+        System.out.println("data.json 파일의 내용이 갱신되었습니다.");
+    }
 }

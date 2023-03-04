@@ -48,6 +48,7 @@ public class Famous_Say {
                 }
                 """
                 .stripIndent()
-                .formatted(id, famous_Saying, author);
+                .formatted(id, famous_Saying, author)
+                .trim();
     }
 }
