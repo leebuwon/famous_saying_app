@@ -26,7 +26,6 @@ public class FamousRepository {
         long id = famousTable.getLastId() + 1;
         Famous_Say famous_say = new Famous_Say(id, content, author);
         return famousTable.save(famous_say);
-
     }
 
     public void remove(Famous_Say famous_say) {
