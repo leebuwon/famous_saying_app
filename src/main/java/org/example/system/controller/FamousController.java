@@ -22,11 +22,11 @@ public class FamousController {
 
     public void write() {
         System.out.printf("명언 : ");
-        String famousSaying = Container.getScanner().nextLine().trim();
+        String content = Container.getScanner().nextLine().trim();
         System.out.printf("작가 : ");
         String author = Container.getScanner().nextLine().trim();
 
-        long id = famousService.write(famousSaying, author);
+        long id = famousService.write(content, author);
 
         System.out.printf("%d번 명언이 등록되었습니다. \n", id);
 

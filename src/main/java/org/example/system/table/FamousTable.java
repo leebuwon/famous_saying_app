@@ -104,9 +104,9 @@ public class FamousTable {
         Util.file.deleteFile(path);
     }
 
-    public void modify(Famous_Say famous_say, String content, String authorName) {
+    public void modify(Famous_Say famous_say, String content, String author) {
         famous_say.setFamous_Saying(content);
-        famous_say.setAuthor(authorName);
+        famous_say.setAuthor(author);
 
         String body = famous_say.toJson();
 

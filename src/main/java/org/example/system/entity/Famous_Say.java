@@ -28,15 +28,15 @@ public class Famous_Say {
         this.famous_Saying = famous_Saying;
     }
 
-    public Famous_Say(long id, String author, String famous_Saying) {
+    public Famous_Say(long id, String famous_Saying, String author) {
         this.id = id;
-        this.author = author;
         this.famous_Saying = famous_Saying;
+        this.author = author;
     }
 
     @Override
     public String toString() {
-        return this.id+" / "+ this.author+" / "+this.famous_Saying;
+        return this.id+" / "+ this.famous_Saying+" / "+this.author;
     }
 
     public String toJson() {
